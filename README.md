@@ -4,5 +4,5 @@
 and Python programming languages
 
 
-#Django custom user authentication and mobile and email verification through OTP 
+#Django custom user authentication System  and mobile and email verification through OTP 
 
