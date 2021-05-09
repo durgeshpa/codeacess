@@ -1,0 +1,96 @@
+{% extends 'index.html'%}
+<!-- {% load static %} -->
+
+{%block title%}
+<title>{{title}}</title>
+{% endblock %}
+{% block css %}
+<style type="text/css">
+	.problem{
+	margin-left: 5px;
+	}
+}
+</style>
+{% endblock %}
+
+{% block bodycontent %}
+<div class="problem  "> 
+ <div class="block  ">
+ <a href="{% url 'programing:clist' %}"> 
+<div class="card inline-block bg-info inline"style="width: 40rem; height:13rem; display: inline-block ;margin:2px;">
+
+<figure class="figure">
+  <img src ="{% static 'static-image/c.png' %}" class="figure-img img-fluid rounded" alt="..." width="30" height="30">
+  <h4><figcaption class="figure-caption text-end  text-uppercase">  practice c languge </figcaption></h4>
+</figure>
+</div>
+</a>
+
+
+
+<a href="#">
+<div class=" card inline-block bg-dark inline" style="display: inline-block ;width:40rem; height:13rem;margin:2px; ">
+<figure class="figure">
+  <img src ="{% static 'static-image/c++.jpeg' %}" class="figure-img img-fluid rounded" alt="..." width="30" height="30">
+  <h4><figcaption class="figure-caption text-primary text-end text-uppercase">  practice c++ languge </figcaption></h4>
+</figure>
+</div>
+</a>
+
+
+</div>
+
+<div class="block  ">
+
+ <a href="#"> 
+<div class="card inline-block inline"style="width:40rem; height:13rem; display: inline-block ;margin:2px; background:rgb(140,212,121);">
+
+<figure class="figure">
+  <img src ="{% static 'static-image/java.png' %}" class="figure-img img-fluid rounded" alt="..." width="30" height="30">
+  <h4><figcaption class="figure-caption text-end text-uppercase">  practice Java languge </figcaption></h4>
+</figure>
+</div>
+</a>
+
+
+
+<a href="#">
+<div class=" card inline-block  inline" style="display: inline-block ;width:40rem; height:13rem;margin:2px;  background:rgb(140,212,221);">
+<figure class="figure">
+  <img src ="{% static 'static-image/python.jpg' %}" class="figure-img img-fluid rounded" alt="..." width="30" height="30">
+  <h4><figcaption class="figure-caption text-primary text-end text-uppercase">  practice Python languge </figcaption></h4>
+</figure>
+</div>
+</a>
+
+
+</div>
+
+<div class="block  ">
+	
+ <a href="#"> 
+<div class="card inline-block inline"style="width:40rem; height:13rem; display: inline-block ;margin:2px; background:rgb(140,212,201);">
+
+<figure class="figure">
+  <img src ="{% static 'static-image/data-st.png' %}" class="figure-img img-fluid rounded" alt="..." width="30" height="30">
+  <h4><figcaption class="figure-caption text-end text-uppercase">  Data structure </figcaption></h4>
+</figure>
+</div>
+</a>
+
+
+
+<a href="#">
+<div class=" card inline-block  inline" style="display: inline-block ;width:40rem; height:13rem;margin:2px;  background:rgb(100,202,111);">
+<figure class="figure">
+  <img src ="{% static 'static-image/algo.jpg' %}" class="figure-img img-fluid rounded" alt="..." width="30" height="30">
+  <h4><figcaption class="figure-caption text-primary text-end text-uppercase"> Algorithm </figcaption></h4>
+</figure>
+</div>
+</a>
+
+
+</div>
+</div > 
+{% endblock%}
+

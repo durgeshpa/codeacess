@@ -1,0 +1,210 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+<title>{{post.title}}</title>
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/complier.css' %}"  media="screen">
+{% endblock %}
+{% block javascript %}
+<!-- <script src=http://ajaxorg.github.io/ace-builds/src/ace.js></script>
+ -->
+
+{% endblock %}
+
+{% block bodycontent %}
+<div class="container  p-3 my-3 border">
+
+<h4 class="text-uppercase text-centere text-dark">Problem</h4>
+<p class=" text-muted">{{post.problem}}</p>
+{% if post.inputformate%}
+<h4 class="text-uppercase text-centere text-dark">inputformate</h4>
+{% endif %}
+{% for in,out in  testcase %}
+<h5 class="text-uppercase text-centere text-dark">Testcase:{{forloop.counter}}</h5>
+<h6 class="text-uppercase text-centere text-dark"> input</h6>
+<p class=" text-muted"> {{in}}</p>
+<h6 class="text-uppercase text-centere text-dark">expected outpot</h6>
+<p class=" text-muted"> {{out}}</p>
+ 
+{% endfor %}
+
+
+</div>
+<div class="container  p-3 my-3 border">
+
+	<form id="form" enctype="multipart/form-data">
+		{% csrf_token %}
+	<select class=" selectpicker " id="id_language" onchange="setlanuage()">
+  		<option value=1 selected default>C</option>
+  		<option value=2>C++</option>
+  		<option value=3>JAVA</option>
+  		<option value=4>PYTHON</option>
+	</select>
+  <div class="container p-3 my-3 ">
+	<div id="editor" class="container   "style="min-height: 450px; margin:auto; width:80%; margin-left: 0px; " >#include< stdio.h >
+		int main()
+		{
+		// write code here
+		}
+
+</div>
+</div>
+
+<button class="btn btn-primary" type="submit">Execute</button>
+<button class="btn btn-primary" type="reset" value="Clear All" onclick='editor.setValue("")'>clearcode</button>
+<input type="checkbox" id='check' value="1" onclick="custominput()" >custom input</button>
+
+ <div id="input" style="display: none;" >
+  <label >Enter input</label><br><textarea type="text-area" id="coustominput" name="lname" value=""></textarea>`
+        
+ </div>
+
+</div>
+</div>
+
+
+
+ <div id="status_header" >
+  
+ </div>
+
+ <div id = "display_data">
+ 	
+ </div>
+
+ 
+
+
+
+
+<script src=http://ajaxorg.github.io/ace-builds/src/ace.js></script>
+<script type="text/javascript" src="{% static 'javascript/code.js' %}">
+</script>
+
+<script type="text/javascript" src="{% static 'javascript/ajax.js' %}">
+  // $(function() {
+  //           function call_ajax(f) {
+             
+  //              //var data=$('#text1').val();
+  //               var code = editor.getValue();
+  //               var input = `{{indata}}`;
+  //               var output = `{{outdata}}`
+  //               var checkbox = $('#check');
+                
+  //               if(checkbox[0].checked == true)
+  //               {
+  //                 input = $('#coustominput').val();
+  //                 output = null;
+                  
+  //               }
+                
+  //             lan = $("#id_language").val();
+  //              data={'code':code,'input':input,
+  //              'output':output,'language':lan,'csrfmiddlewaretoken':$("input[name=csrfmiddlewaretoken]").val()};
+  //               //console.log(data);
+  //               $.ajax({
+  //                   url: `{% url 'programing:execute' %}`,//'/heart/pridict/',
+  //                   data: data,
+  //                   dataType: 'json',
+  //                   type: 'POST',
+  //                   success: f,
+  //                   error: function(error) {
+                       
+  //                   }
+  //               });
+  //           }
+
+  //          function server_response(response) {
+               
+  //              const r = JSON.parse(response);
+  //              if (r.result && !r.test_cases_total){
+                
+  //               z = `<div class="container">
+               
+  //                   <h3> output:</h3> 
+  //                   <h5>${r.output} </h5> 
+  //               </div>`;
+  //                const tabelBody = document.querySelector("#status_header");
+  //        tabelBody.innerHTML = z
+  //               var tabelbody = document.querySelector("#display_data");
+  //            tabelbody.innerHTML ='';
+             
+
+  //              }
+  //         else
+  //       {
+  //        const tableData =      `<div id ="result">
+        
+  //       <div id="status_header">
+  //       <table>
+  //           <tr>
+  //               <th rowspan="2"> Status </th>
+  //               <th colspan="2"> Test Cases </th>
+  //           </tr>
+  //           <tr>
+  //               <th> Total </th>
+  //               <th> Passed </th>
+  //           </tr>
+  //           <tr>
+  //               <td id = "final">${r.result} </td>
+  //               <td id = "test_cases_total">${r.test_cases_total} </td>
+  //               <td id = "test_cases_passed">${r.test_cases_passed}</td>
+  //           </tr>
+  //       </table>
+  //       </div>`
+  //       const tabelBody = document.querySelector("#status_header");
+  //        tabelBody.innerHTML = tableData;
+  //        var x = ''
+
+  //       for (var i in r["display_data"])
+  //       { var z = ''
+          
+  //            if (r["display_data"][i][1] == true)
+  //            {
+  //               z = `<div><div class="testcase-status success-bg">
+  //               <div class="leftPane">
+  //                   <h3> Testcase ${r["display_data"][i][0]} <span class="status-text-success">success</span> </h3>
+  //               </div>`;
+  //           }
+  //           else{
+  //               z = `<div class="testcase-status fail-bg">
+  //               <div class="leftPane">
+  //                   <h3> Testcase ${r["display_data"][i][0]} <span class="status-text-fail">fail</span> </h3>
+  //               </div>`;
+  //           }
+            
+  //           var y =`<div class="rightPane">
+  //               <h2> Output: </h2>
+  //               <p><pre>${r["display_data"][i][2]}</pre>
+  //               <h2>expected out put </h2>
+  //               <p><pre>${ r["display_data"][i][3] }</pre>
+                
+  //               <h2> Errors: </h2>
+  //               <p><pre>${r["display_data"][i][4]}</pre>
+  //           </div> </div>`;
+  //           x = x.concat(z,y);
+  //            var tabelbody = document.querySelector("#display_data");
+  //            tabelbody.innerHTML =x;
+  //            //x ="";
+
+
+  //       }
+       
+               
+              
+  //           }
+  //         }
+            
+  //           $('#form').submit(function(e) {
+  //               e.preventDefault();
+  //               call_ajax(server_response);
+  //           });
+  //       });
+</script>
+
+
+
+
+{% endblock%}

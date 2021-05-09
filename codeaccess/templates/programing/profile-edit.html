@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+ {% load crispy_forms_tags %}
+ {% load static %}
+ {% block title %}
+  <title>{{title}}</title>
+  {% endblock %}
+ {% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}"  media="screen">
+{% endblock %}
+
+{% block body %}
+
+<div class="container  ">
+<div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        
+        <div class="card card-signin my-5">
+         <h5 class="card-title text-center" >Editprofile</h5>
+          <hr >
+          
+          <div class="card-body">
+            {%if form.image%}
+            <form class="form-signin" method="post" action="{% url 'programing:updateimage' %}" enctype="multipart/form-data">
+              <div class="form-label-group">
+                {% csrf_token %}
+    
+                
+              	{{form.image}}
+            
+                
+                
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update</button>
+            </form>
+              {% else %}
+                <form class="form-signin" method="post" action="{% url 'programing:updateprofile' %}">
+              <div class="form-label-group">
+                {% csrf_token %}
+    
+                {{form|crispy}}
+                
+                
+                
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update</button>
+              </form>
+                {% endif %}
+
+              
+            
+             <hr>
+             <a href="{%url 'programing:profile'%}"><button class="btn btn-lg btn-google btn-block text-uppercase" type="button">Cancel</button>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+{% endblock %}
+
+
+ 

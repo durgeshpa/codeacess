@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block bodycontent %}
+<div class=" container">
+{% for post in posts %}
+<div class="navbar navbar-expand-lg ">
+
+<ul class="navbar-nav mr-auto">
+<div>
+<h1>{{post.title}}</h1>
+
+<p class='text-info'>Level : {{post.lavel}}</p>
+</div>
+</ul>
+
+<!-- <div style="float: right;"> -->
+<a href="{{post.get_absolute_url}}" class= "fixed-right " ><button class=' btn btn-primary'> solve</button></a>
+<!-- </div>
+ -->
+
+
+</div>
+<hr>
+
+
+
+
+{% endfor %}
+{%  include "programing/pagination.html" with page=page_obj %}
+</div>
+{% endblock%}

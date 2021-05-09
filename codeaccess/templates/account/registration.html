@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+ {% load crispy_forms_tags %}
+ {% load static %}
+ {% block title %}
+  <title>{{title}}</title>
+  {% endblock %}
+ {% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}"  media="screen">
+{% endblock %}
+
+{% block body %}
+
+<div class="container  ">
+<div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        
+        <div class="card card-signin my-5">
+         <h5 class="card-title text-center" >Registration</h5>
+          <hr >
+          
+          <div class="card-body">
+            
+            <form class="form-signin" method="post">
+              <div class="form-label-group">
+                {% csrf_token %}
+              	{{form|crispy}}
+                
+                
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{first_buton}}</button>
+
+              
+            </form>
+            <hr >
+            {% if second_button == 'Login' %}
+               <a href="{%url 'account:login'%}"><button class="btn btn-lg btn-google btn-block text-uppercase" type="button">{{second_button}}</button>
+              </a>
+             {% else %}
+             <a href="{%url 'account:resetpassword'%}"><button class="btn btn-lg btn-facebook btn-block text-uppercase" type="button">reset password</button>
+              <hr>
+             <a href="{%url 'account:register'%}"><button class="btn btn-lg btn-google btn-block text-uppercase" type="button">{{second_button}}</button>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+ 
